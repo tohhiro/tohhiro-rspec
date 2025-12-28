@@ -21,6 +21,9 @@ exec: ## コンテナ内にbashで入る
 test: ## RSpecテストを実行
 	docker compose exec rspec rspec
 
+test-doc: ## RSpecテストを詳細表示で実行
+	docker compose exec rspec rspec -f d
+
 test-file: ## 特定のファイルをテスト (例: make test-file FILE=spec/calc_spec.rb)
 	docker compose exec rspec rspec $(FILE)
 
