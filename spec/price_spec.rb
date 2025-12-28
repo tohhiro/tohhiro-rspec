@@ -7,4 +7,15 @@ RSpec.describe Calc do
   it {
     expect(calc.add(2,3)).to eq(5)
   }
-end
+
+  # let
+  context "tax 5%" do
+    let(:tax) {0.05} # letで変数を定義できる
+    it { expect(calc.price(100, tax)).to eq(105.0) }
+  end
+
+  context "tax 8%" do
+    let(:tax) {0.08}
+    it { expect(calc.price(100, tax)).to eq(108.0) }
+  end
+end 
