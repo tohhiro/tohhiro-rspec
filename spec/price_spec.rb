@@ -32,4 +32,15 @@ RSpec.describe Calc do
       expect(calc.add_name(10, 20, user.name)).to eq('30 by Alice') # user.nameは'Alice'を返す
     end
   end
+
+  # test double
+  # method expectation（呼ばれなかったら失敗する）
+  context "test double with method expectation" do
+    it "expects log method to be called" do
+      logger = double('logger')
+      expect(logger).to receive(:log)
+      calc = Calc.new(logger)
+      calc.add(1, 2) # loggerを使うメソッドを呼ぶ
+    end
+  end
 end 
