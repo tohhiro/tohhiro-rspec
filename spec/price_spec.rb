@@ -9,13 +9,16 @@ RSpec.describe Calc do
   }
 
   # let
+  # 注意点: 
+  # - example毎に結果がキャッシュされるため、example内で値を変更しても次のexampleには影響しない
+  # - 遅延評価されるため、実際に使われるまで評価されない
   context "tax 5%" do
     let(:tax) {0.05} # letで変数を定義できる
     it { expect(calc.price(100, tax)).to eq(105.0) }
   end
 
   context "tax 8%" do
-    let(:tax) {0.08}
+    let!(:tax) {0.08} # let!で即時評価される
     it { expect(calc.price(100, tax)).to eq(108.0) }
   end
 end 
