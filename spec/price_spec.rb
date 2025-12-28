@@ -21,4 +21,15 @@ RSpec.describe Calc do
     let!(:tax) {0.08} # let!で即時評価される
     it { expect(calc.price(100, tax)).to eq(108.0) }
   end
+
+  # test double
+  # method stub
+  context "test double" do
+    it "returns name with result" do
+      user = double('user') # doubleでtest doubleを作成できる（書かなくても良いが、名前を付けるとエラーメッセージがわかりやすくなる）
+      allow(user).to receive(:name).and_return('Alice') # allow...to receiveでmethod stubを設定できる
+      # user.name -> Aliceを返すように設定している
+      expect(calc.add_name(10, 20, user.name)).to eq('30 by Alice') # user.nameは'Alice'を返す
+    end
+  end
 end 
